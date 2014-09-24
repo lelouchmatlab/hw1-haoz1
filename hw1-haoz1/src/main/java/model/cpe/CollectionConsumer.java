@@ -1,3 +1,20 @@
+/**
+ * CollectionConsumer is the class which is responsible for collecting annotation made 
+ * in analysis engine and then writing output files. The methods it includes are the following:
+ * <ul>
+ * <li> Initialization
+ * <li> ProcessCas
+ * <li>collectionProcessComplete
+ * </ul>
+ * 
+ * @author  Hao Zhang
+ */
+
+
+
+
+
+
 package model.cpe;
 
 import java.io.BufferedWriter;
@@ -21,6 +38,12 @@ public class CollectionConsumer extends CasConsumer_ImplBase {
 	public BufferedWriter out;
 	public static final String PARAM_OUTPUTFILE = "Param_OutputFile";
 	
+	
+	/**
+	 * Initialize ColletionConsumer. 
+	 * <p>
+	 * In this method, it simply open the output file and prepare to write result
+	 */
 	public void initialize(){
 		try {
 			String filename = ((String) getConfigParameterValue(PARAM_OUTPUTFILE)).trim();
@@ -36,6 +59,12 @@ public class CollectionConsumer extends CasConsumer_ImplBase {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Process the function of collection consumer for each CAS.
+	 * 
+	 * @param  aCAS      The CAS to be processed
+	 */
 	
 	@Override
 	public void processCas(CAS aCAS) throws ResourceProcessException {
@@ -71,7 +100,9 @@ public class CollectionConsumer extends CasConsumer_ImplBase {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	 * The function to be called when it finish the work. It closes the output file stream. 
+	 */
 	public void collectionProcessComplete(){	
 	    try {
 			out.close();

@@ -1,3 +1,11 @@
+/**
+ * CollectionReader is responsible for converting input file to CAS for analysis engine to process. In it's initialization 
+ * method it open the input file stream. Then int getNext function, it simply reads in a line, set it content to CAS text, return that CAS instanse.  
+ *
+ *@author Hao Zhang
+ */
+
+
 package model.cpe;
 
 import java.io.BufferedReader;
@@ -22,6 +30,10 @@ public class CollectionReader extends CollectionReader_ImplBase {
 	public BufferedReader in;
 	public int CurrentIndex;
 	
+	
+	/**
+	 * Initialize input file reader object.
+	 */
 	public void initialize(){
 		CurrentIndex = 0;
 		String InputFile = ((String) getConfigParameterValue(PARAM_INPUTFILE)).trim();
@@ -34,6 +46,12 @@ public class CollectionReader extends CollectionReader_ImplBase {
 		in = new BufferedReader(file);
 	}
 	
+	
+	/**
+	 * Get next CAS instances. It reads next line from the input file then initialize CAS.
+	 * 
+	 * @param  aCAS    The CAS to be processed.
+	 */
 	@Override
 	public void getNext(CAS aCAS) throws IOException, CollectionException {
 		// TODO Auto-generated method stub
@@ -56,14 +74,18 @@ public class CollectionReader extends CollectionReader_ImplBase {
 		// TODO Auto-generated method stub
 
 	}
-
+    /**
+     * return the progress of collection processing. (Not implemented in this task)  
+     */
 	@Override
 	public Progress[] getProgress() {
 		// TODO Auto-generated method stub
 		//return new Progress[] { new ProgressImpl(CurrentIndex, 1 , Progress.ENTITIES) };
 	    return null;
 	}
-
+	/**
+     * Check if there is more CAS need to be processed.  
+     */ 
 	@Override
 	public boolean hasNext() throws IOException, CollectionException {
 		// TODO Auto-generated method stub

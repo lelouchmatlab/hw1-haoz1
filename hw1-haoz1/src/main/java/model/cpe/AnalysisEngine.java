@@ -1,3 +1,11 @@
+/**
+ *Analysis Engine class implements the main function for our Name Entity Recognition task. After initialization,
+ *it calls process method to process each CAS.
+ * 
+ * @author  Hao Zhang
+ */
+
+
 package model.cpe;
 
 import java.io.File;
@@ -20,6 +28,13 @@ import com.aliasi.util.AbstractExternalizable;
 public class AnalysisEngine extends JCasAnnotator_ImplBase {
     public Chunker chunker = null;
 	File modelFile = null;
+	
+	
+	
+	/**Initialize necessary parameter before processing. It reads in model file name and initialize File object.
+	 * 
+	 * @param  aContext           UIMA class to access paramters in descriptor file
+	 */
 	public void initialize(UimaContext aContext){
 		
 		String model_file = (String) aContext.getConfigParameterValue("Param_ModelFile");
@@ -35,6 +50,14 @@ public class AnalysisEngine extends JCasAnnotator_ImplBase {
 		
 		
 	}
+	
+	
+	/**
+	 * Process function is responsible for NER of each sentence. It calls LingPipe class method
+	 * "chunk" to get name entity for a given sentence.
+	 * 
+	 * @param aJCas     CAS to be processed
+	 */
 	@Override
 	public void process(JCas aJCas) throws AnalysisEngineProcessException {
 		
